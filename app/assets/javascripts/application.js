@@ -44,6 +44,7 @@ var Application = function () {
 		$('.ui-tooltip').tooltip();
 	    $('.ui-popover').popover();
     
+    $('form').validate();
 
 	}
 

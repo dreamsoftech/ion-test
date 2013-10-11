@@ -39,4 +39,10 @@ class SuppliersController < ApplicationController
 
   	redirect_to suppliers_path, notice: "Supplier is successfully removed."
 	end
+
+  private
+
+  def admin_authorization
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+  end
 end
