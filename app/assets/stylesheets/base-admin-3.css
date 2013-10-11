@@ -466,7 +466,6 @@ h6 {
 .ui-datepicker-next-hover .ui-icon,
 .ui-datepicker-prev-hover .ui-icon {
   background-color: #ffffff;
-  background-image: url(../css/ui-lightness/images/ui-icons_222222_256x240.png);
   opacity: .5;
 }
 /*------------------------------------------------------------------

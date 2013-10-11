@@ -1,6 +1,6 @@
 .jquery-msgbox
 {
-  background:url(images/background.png) repeat-x left bottom;
+  background:url(/assets/msg-box/background.png) repeat-x left bottom;
   padding-bottom:55px;
   font-style:normal;
 }
@@ -51,25 +51,25 @@
 
 .jquery-msgbox-alert
 {
-  background: url(images/alert.png) no-repeat 20px 20px;
+  background: url(/assets/msg-box/alert.png) no-repeat 20px 20px;
 }
 
 .jquery-msgbox-info
 {
-  background: url(images/info.png) no-repeat 20px 20px;
+  background: url(/assets/msg-box/info.png) no-repeat 20px 20px;
 }
 
 .jquery-msgbox-error
 {
-  background: url(images/error.png) no-repeat 20px 20px;
+  background: url(/assets/msg-box/error.png) no-repeat 20px 20px;
 }
 
 .jquery-msgbox-prompt
 {
-  background: url(images/question.png) no-repeat 20px 20px;
+  background: url(/assets/msg-box/question.png) no-repeat 20px 20px;
 }
 
 .jquery-msgbox-confirm
 {
-  background: url(images/confirm.png) no-repeat 20px 20px;
+  background: url(/assets/msg-box/confirm.png) no-repeat 20px 20px;
 }
