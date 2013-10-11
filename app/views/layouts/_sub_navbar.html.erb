@@ -22,7 +22,7 @@
 							<span>Home</span>
 						</a>
 					</li>
-
+					<% if current_user.has_role? :admin %>
 					<li class="<%= active_sub_menu('admin') %>">					
 						<a href="/developers">
 							<i class="icon-th"></i>
@@ -43,6 +43,7 @@
 							<span>Settings</span>
 						</a>	    
 					</li>
+					<% end %>
 
 				</ul>
 			</div> <!-- /.subnav-collapse -->

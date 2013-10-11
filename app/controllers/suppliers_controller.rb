@@ -1,5 +1,5 @@
 class SuppliersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :admin_authorization
 
   def index
   	@suppliers = Supplier.paginate(page: params[:page], per_page: 10)

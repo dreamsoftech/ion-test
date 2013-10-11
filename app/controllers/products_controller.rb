@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :admin_authorization
 
   def index
   	@products = Product.paginate(page: params[:page], per_page: 10)
@@ -37,4 +37,10 @@ class ProductsController < ApplicationController
 
   	redirect_to products_path, notice: "Product is successfully removed."
 	end
+
+  private
+
+  def admin_authorization
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+  end
 end

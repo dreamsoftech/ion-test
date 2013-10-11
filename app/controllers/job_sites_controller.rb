@@ -1,8 +1,11 @@
 class JobSitesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :admin_authorization
 
   def index
   	@job_sites = JobSite.paginate(page: params[:page], per_page: 10)
+    if Developer.count == 0
+      redirect_to developers_path, notice: "There is no developers. Please add developer first"
+    end
   end
 
   def create
@@ -29,4 +32,10 @@ class JobSitesController < ApplicationController
 
   	redirect_to job_sites_path, notice: "JobSite is successfully removed."
 	end
+
+  private
+
+  def admin_authorization
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+  end
 end

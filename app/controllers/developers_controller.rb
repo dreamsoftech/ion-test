@@ -1,5 +1,5 @@
 class DevelopersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :admin_authorization
 
   def index
   	@developers = Developer.paginate(page: params[:page], per_page: 10)
@@ -29,4 +29,10 @@ class DevelopersController < ApplicationController
 
   	redirect_to developers_path, notice: "Developer is successfully removed."
 	end
+
+  private
+
+  def admin_authorization
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+  end
 end
