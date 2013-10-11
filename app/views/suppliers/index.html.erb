@@ -1,0 +1,44 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-supplier"></i>
+    <h3>Suppliers</h3>
+  </div> <!-- /widget-header -->
+        
+  <div class="widget-content">
+  	<div class="row-fluid action-div">
+      <a href="/suppliers/new" class="btn btn-default pull-right">Create</a>
+    </div>
+    <div class="table-responsive">
+	    <table class="table table-condensed">
+	      <thead>
+	        <tr>
+	          <th>Name</th>
+	          <th>Location</th>
+	          <th>Email</th>
+	          <th>Phone</th>
+	          <th>Fax</th>
+	          <th>Registered</th>
+	          <th>Action</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      <% @suppliers.each do |supplier| %>
+	        <tr>
+	          <td><%= link_to supplier.name, supplier %></td>
+	          <td><%= supplier.location %></td>
+	          <td><%= supplier.email %></td>
+	          <td><%= supplier.phone %></td>
+	          <td><%= supplier.fax %></td>
+	          <td><%= supplier.created_at.to_date %></td>
+	          <td>
+	            <a href="<%= edit_supplier_path(supplier) %>" class="btn btn-default btn-sm" ><i class="icon-edit"></i>Edit</a>
+	            <%= link_to("<i class='icon-remove'></i>Delete".html_safe, supplier_path(supplier), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-sm') %>
+	          </td>
+	        </tr>
+	      <% end %>
+	      </tbody>
+	    </table>
+      <%= will_paginate @suppliers, previous_label: "&laquo;", next_label: "&raquo;" %>
+	  </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-product"></i>
+    <h3>Suppliers > Edit Supplier</h3>
+  </div> <!-- /widget-header -->
+        
+  <div class="widget-content">
+    <div class="row-fluid">
+      <div class="col-md-6">
+        <%= simple_form_for @supplier, url: supplier_path(@supplier), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
+          <%= render partial: "form", locals: {f: f} %>
+
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+              <%= f.submit "Update", :class => "btn btn-primary" %>
+              <a onclick= "history.back();" class="btn btn-default">Back</a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm-6">
+        <div id="products_div" class="panel panel-default">
+          <div class="panel-heading">
+            Products
+            <span class="pull-right">
+              <%= select_tag :products, 
+              options_from_collection_for_select(Product.all, "id", "name") %>
+              <a id="btn_add_product" class="btn btn-xs btn-default">Add</a>
+            </span>
+          </div>
+          <div class="panel-body" style="min-height: 300px;">
+            <div class="table-responsive">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Unit</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

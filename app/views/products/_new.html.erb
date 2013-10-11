@@ -1,0 +1,51 @@
+<div id="add-product" class="modal fade" role="dialog">
+  <%= simple_form_for :product, url: products_path, :html => {:method => :post, :class => 'form-horizontal' } do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">&#215;</a>
+        <h4>Add New Product</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= f.label :sku, "Sku", class: "col-sm-3" %>
+          <div class="col-sm-8">
+            <%= f.input_field :sku, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name, "Name", class: "col-sm-3" %>
+          <div class="col-sm-8">
+            <%= f.input_field :name, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :price, "Price", class: "col-sm-3" %>
+          <div class="col-sm-8">
+            <%= f.input_field :price, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :photo, "Photo", class: "col-sm-3" %>
+          <div class="col-sm-4">
+            <a class="product_photo_link">
+              <img id="photo" class="img-thumbnail" src="/assets/missing.jpg" style="width: 150px; height: 150px;">
+            </a>
+            <%= f.file_field :photo, class: "form-control", style: "display: none" %>
+          </div>
+          <div class="col-sm-3">
+            <p>Upload the profile photo</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Update", :class => "btn btn-primary" %>
+        <a class="btn btn-default" data-dismiss="modal" href="#">Cancel</a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

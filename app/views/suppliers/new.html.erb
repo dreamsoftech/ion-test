@@ -1,0 +1,60 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-product"></i>
+    <h3>Suppliers > Add Supplier</h3>
+  </div> <!-- /widget-header -->
+        
+  <div class="widget-content">
+    <div class="row-fluid">
+      <%= simple_form_for @supplier, url: suppliers_path, :html => {:method => :post, :class => 'form-horizontal' } do |f| %>
+        <div class="col-sm-6">
+          <%= render partial: "form", locals: {f: f} %>
+
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+              <%= f.submit "Create", :class => "btn btn-primary" %>
+              <a onclick= "history.back();" type="button" class="btn btn-default">Back</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div id="products_div" class="panel panel-default">
+            <div class="panel-heading">
+              Products
+              <span class="pull-right">
+                <%#= select_tag :products, 
+                options_from_collection_for_select(Product.all, "id", "name") %>
+                <!-- <a id="btn_add_product" class="btn btn-xs btn-default">Add</a> -->
+              </span>
+            </div>
+            <div class="panel-body" style="min-height: 300px;">
+              <div class="table-responsive">
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @products.each do |p| %>
+                    <tr>
+                      <td>
+                        <input type="checkbox" name="product" id="product[<%= p.id %>]">
+                      </td>
+                      <td><%= p.name %></td>
+                      <td><%= p.price%></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

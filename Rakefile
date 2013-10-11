@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-RailsStripeMembershipSaas::Application.load_tasks
+Amco::Application.load_tasks

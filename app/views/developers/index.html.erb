@@ -1,0 +1,45 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-developer"></i>
+    <h3>Developers</h3>
+  </div> <!-- /widget-header -->
+        
+  <div class="widget-content">
+    <div class="row-fluid action-div">
+      <a data-toggle="modal" href="#add-developer" class="btn btn-default pull-right" type="button">Create</a>
+      <%= render partial: "new" %>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Contact Name</th>
+            <th>Contact Email</th>
+            <th>Registered</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @developers.each do |developer| %>
+          <tr>
+            <td><%= link_to developer.name, developer %></td>
+            <td><%= developer.contact_name %></td>
+            <td><%= developer.contact_email %></td>
+            <td><%= developer.created_at.to_date %></td>
+            <td><%= developer.status %></td>
+            <td>
+              <a data-toggle="modal" href="#developer-<%= developer.id %>" class="btn btn-default btn-sm" type="button"><i class="icon-edit"></i>Edit</a>
+              <%= render partial: "edit", locals: { developer: developer } %>
+              <%= link_to("<i class='icon-remove'></i>Delete".html_safe, developer_path(developer), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-sm') %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @developers, previous_label: "&laquo;", next_label: "&raquo;" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-purchase_order"></i>
+    <h3>Purchase Orders</h3>
+  </div> <!-- /widget-header -->
+        
+  <div class="widget-content">
+    <div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>PO Number</th>
+            <th>Job</th>
+            <th>Supervisor</th>
+            <th>Time</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @purchase_orders.each do |purchase_order| %>
+          <tr>
+            <td><%= link_to purchase_order.name, purchase_order %></td>
+            <td><%= purchase_order.email %></td>
+            <td><%= purchase_order.created_at.to_date %></td>
+            <td><%= purchase_order.roles.first.name.titleize unless purchase_order.roles.first.nil? %></td>
+            <td>
+              <a data-toggle="modal" href="#purchase_order-<%= purchase_order.id %>" class="btn btn-default btn-sm" type="button"><i class="icon-edit"></i>Edit</a>
+              <%= render partial: "edit", locals: { purchase_order: purchase_order } %>
+              <%= link_to("<i class='icon-remove'></i>Delete".html_safe, purchase_order_path(purchase_order), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-sm') %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

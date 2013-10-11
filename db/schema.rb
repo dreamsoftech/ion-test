@@ -11,7 +11,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121017180539) do
+ActiveRecord::Schema.define(:version => 20131010134542) do
+
+  create_table "developers", :force => true do |t|
+    t.string   "name"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "status"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "job_sites", :force => true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.integer  "user_id"
+    t.integer  "developer_id"
+    t.integer  "supplier_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "sku"
+    t.string   "name"
+    t.decimal  "price"
+    t.integer  "unit_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "purchase_orders", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -23,6 +60,23 @@ ActiveRecord::Schema.define(:version => 20121017180539) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "suppliers", :force => true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "fax"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "suppliers_products", :force => true do |t|
+    t.integer  "supplier_id"
+    t.integer  "product_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -37,9 +91,8 @@ ActiveRecord::Schema.define(:version => 20121017180539) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "name"
-    t.string   "customer_id"
-    t.string   "last_4_digits"
+    t.string   "first_name",             :default => ""
+    t.string   "last_name",              :default => ""
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

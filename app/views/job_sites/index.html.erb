@@ -1,0 +1,44 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-job_site"></i>
+    <h3>Job Sites</h3>
+  </div> <!-- /widget-header -->
+        
+  <div class="widget-content">
+    <div class="row-fluid action-div">
+      <a data-toggle="modal" href="#add-jobsite" class="btn btn-default pull-right" type="button">Create</a>
+      <%= render partial: "new" %>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Supervisor</th>
+            <th>Builder Name</th>
+            <th>Registered</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @job_sites.each do |job_site| %>
+          <tr>
+            <td><%= link_to job_site.name, job_site %></td>
+            <td><%= job_site.location %></td>
+            <td><%= job_site.user.name %></td>
+            <td><%= job_site.developer.name %></td>
+            <td><%= job_site.created_at.to_date %></td>
+            <td>
+              <a data-toggle="modal" href="#jobsite-<%= job_site.id %>" class="btn btn-default btn-sm" type="button"><i class="icon-edit"></i>Edit</a>
+              <%= render partial: "edit", locals: { job_site: job_site } %>
+              <%= link_to("<i class='icon-remove'></i>Delete".html_safe, job_site_path(job_site), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-sm') %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @developers, previous_label: "&laquo;", next_label: "&raquo;" %>
+    </div>
+  </div>
+</div>

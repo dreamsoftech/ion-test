@@ -1,0 +1,19 @@
+<div id="add-supplier" class="modal fade" role="dialog">
+  <%= simple_form_for :supplier, url: suppliers_path, :html => {:method => :post, :class => 'form-horizontal' } do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">&#215;</a>
+        <h4>Add Supplier</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "form", locals: {f: f} %>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Create", :class => "btn btn-default" %>
+        <a class="btn btn-default" data-dismiss="modal" href="#">Cancel</a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

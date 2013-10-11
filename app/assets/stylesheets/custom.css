@@ -1,0 +1,79 @@
+/*------------------------------------------------------------------
+
+[Custom Stylesheet]
+
+
+Last change:	10/09/2013
+Assigned to:	Kevin
+
+-------------------------------------------------------------------*/
+
+html, body
+{
+	height: 100%;
+}
+
+#container
+{
+	min-height: 100%;
+	position: relative;
+}
+
+#main
+{
+	padding-bottom: 60px;
+}
+.footer
+{
+	width: 100%;
+	bottom: 0px;
+	position: absolute;
+}
+
+
+#landing-page section
+{
+	margin: 40px auto;
+	padding: 10px;
+	float: none;
+}
+
+#landing-page section h2
+{
+	margin-bottom: 30px;
+}
+
+#landing-page .highlighted
+{
+	background-color: #3A66A6;
+}
+
+#process-section img
+{
+	width: 250px;
+	margin-bottom: 20px;
+}
+
+#process-section
+{
+	text-align: center;
+	margin: 0 auto !important;
+	padding-top: 50px;
+}
+
+#landing-page .step{
+	padding: 40px 0px;
+}
+
+.alert
+{
+	padding: 11px;
+}
+
+.action-div
+{
+	border-bottom: 1px solid #eee;
+	padding-bottom: 6px;
+	margin-bottom: 15px;
+	display: table;
+}

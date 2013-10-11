@@ -1,0 +1,45 @@
+<% if current_panel == "admin" %>
+	<div class="widget stacked">
+		<div class="widget-header">
+	    <i class="icon-th"></i>
+	    <h3>Admin Panel</h3>
+	  </div> <!-- /widget-header -->
+	  <div class="widget-content">
+			<ul class="nav nav-pills nav-stacked">
+				<li <%= active_left_bar "developers" %> ><a href="/developers">Developers</a></li>
+				<li <%= active_left_bar "job_sites" %> ><a href="/job_sites">Job Sites</a></li>
+				<li <%= active_left_bar "suppliers" %> ><a href="/suppliers">Suppliers</a></li>
+				<li <%= active_left_bar "products" %> ><a href="/products">Products</a></li>
+				<li <%= active_left_bar "purchase_orders" %> ><a href="/purchase_orders">Purchase Orders</a></li>
+			</ul>
+	  </div>
+	</div>
+<% elsif current_panel == "logs" %>
+	<div class="widget stacked">
+		<div class="widget-header">
+	    <i class="icon-th"></i>
+	    <h3>Logs</h3>
+	  </div> <!-- /widget-header -->
+	  <div class="widget-content">
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="#">Event Logs</a></li>
+				<li><a href="#">Emails</a></li>
+			</ul>
+	  </div>
+	</div>
+<% elsif current_panel == "settings" %>
+	<div class="widget stacked">
+		<div class="widget-header">
+	    <i class="icon-th"></i>
+	    <h3>Settings</h3>
+	  </div> <!-- /widget-header -->
+	  <div class="widget-content">
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="/products">Products</a></li>
+				<li><a href="/products">Email Template</a></li>
+				<li><a href="#">Tax Setting</a></li>
+				<li><a href="#">Unit Setting</a></li>
+			</ul>
+	  </div>
+	</div>
+<% end %>

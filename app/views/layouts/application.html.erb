@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Rails Stripe Membership Saas" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "AMCO Purchase management" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Stripe Membership Saas" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
@@ -10,26 +10,32 @@
     <%= yield(:head) %>
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
+    <div id="container">
+      <%= render 'layouts/navigation' %>
+
+      <div id="main" role="main">
         <div class="container">
-          <%= render 'layouts/navigation' %>
-        </div>
-      </nav>
-    </div>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
+          <div class="row">
+            
+            <% if current_panel == "home" %>
+              <div class="col-sm-12">
+                <%= render 'layouts/messages' %>
+                <%= yield %>
+              </div>
+            <% else %>
+              <div class="col-sm-3">
+                <%= render 'layouts/leftbar' %>
+              </div>
+              <div class="col-md-9">
+                <%= render 'layouts/messages' %>
+                <%= yield %>
+              </div>
+            <% end %>
           </div>
-          <footer>
-          </footer>
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+        </div> <!--! end of .container -->
+      </div> <!--! end of #main -->
+
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
