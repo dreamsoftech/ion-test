@@ -1,0 +1,45 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-supplier"></i>
+    <h3>Suppliers > <%= @supplier.name %></h3>
+  </div> <!-- /widget-header -->
+        
+  <div class="widget-content">
+    <table class="table none-border">
+      <tbody>
+        <tr>
+          <td><b>Name</b></td>
+          <td><%= @supplier.name %></td>
+          <td><b>Location</b></td>
+          <td><%= @supplier.location %></td>
+        </tr>
+        <tr>
+        	<td><b>Email</b></td>
+          <td><%= @supplier.email %></td>
+        	<td><b>Phone</b></td>
+          <td><%= @supplier.phone %></td>
+        </tr>
+        <tr>
+        	<td><b>Fax</b></td>
+          <td><%= @supplier.fax %></td>
+        	<td><b>Created Date</b></td>
+          <td><%= @supplier.created_at.to_date %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Products</h4>
+    <hr>
+    <div class="row">
+    	<% @products.each do |p| %>
+		  <div class="col-sm-6 col-md-3">
+	      <%= image_tag p.photo.url(:medium), class: "img-thumbnail" %>
+		    <div class="caption">
+	        <center><%= p.name %>: $<%= p.price %></center>
+	      </div>
+		  </div>
+		  <% end %>
+		</div>
+
+  </div>
+</div>

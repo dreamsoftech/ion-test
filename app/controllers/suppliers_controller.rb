@@ -7,11 +7,26 @@ class SuppliersController < ApplicationController
 
   def create
   	supplier = Supplier.new(params[:supplier])
-  	if supplier.save
+    if supplier.save
+      product_ids = params[:products].keys
+
+      product_ids.each do |product_id|
+        supplier_product = SupplierProducts.new
+        supplier_product.product_id = product_id
+        supplier_product.supplier_id = supplier.id
+
+        supplier_product.save
+      end
+
   		redirect_to suppliers_path, notice: "New Supplier is successfully created."
   	else
   		redirect_to suppliers_path, notice: "Unable to create new supplier."
   	end
+  end
+
+  def show
+    @supplier = Supplier.find(params[:id])
+    @products = @supplier.products
   end
 
   def new
@@ -22,6 +37,7 @@ class SuppliersController < ApplicationController
   def edit
     @supplier = Supplier.find(params[:id])
     @products = Product.all
+    @supplier_products = @supplier.supplier_products
   end
 
   def update

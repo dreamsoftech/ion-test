@@ -41,7 +41,7 @@
                     <% @products.each do |p| %>
                     <tr>
                       <td>
-                        <input type="checkbox" name="product" id="product[<%= p.id %>]">
+                        <%= check_box_tag "products[#{p.id}]" %>
                       </td>
                       <td><%= p.name %></td>
                       <td><%= p.price%></td>

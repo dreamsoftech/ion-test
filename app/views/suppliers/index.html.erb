@@ -17,6 +17,7 @@
 	          <th>Email</th>
 	          <th>Phone</th>
 	          <th>Fax</th>
+	          <th>Products</th>
 	          <th>Registered</th>
 	          <th>Action</th>
 	        </tr>
@@ -29,6 +30,7 @@
 	          <td><%= supplier.email %></td>
 	          <td><%= supplier.phone %></td>
 	          <td><%= supplier.fax %></td>
+	          <td><%= supplier.products.count %></td>
 	          <td><%= supplier.created_at.to_date %></td>
 	          <td>
 	            <a href="<%= edit_supplier_path(supplier) %>" class="btn btn-default btn-sm" ><i class="icon-edit"></i>Edit</a>

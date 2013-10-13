@@ -35,17 +35,19 @@
                   <tr>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Unit</th>
-                    <th></th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <% @supplier_products.each do |sp| %>
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><%= sp.id %></td>
+                    <td><%= sp.product.name %></td>
+                    <td>
+                      <%= link_to("<i class='icon-remove'></i>Delete".html_safe, supplier_product_path(sp.id), :data => { :confirm => "Are you sure?" }, :method => :delete) %>
+                    </td>
                   </tr>
+                  <% end %>
                 </tbody>
               </table>
             </div>

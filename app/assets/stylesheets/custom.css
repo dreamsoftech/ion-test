@@ -77,3 +77,8 @@ html, body
 	margin-bottom: 15px;
 	display: table;
 }
+
+.none-border td
+{
+	border: none !important;
+}

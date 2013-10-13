@@ -13,6 +13,8 @@ Amco::Application.routes.draw do
   resources :developers
   resources :job_sites
   resources :suppliers
+  resources :supplier_products, :only => ["destroy"]
+  
   resources :products
   resources :purchase_orders
 end
