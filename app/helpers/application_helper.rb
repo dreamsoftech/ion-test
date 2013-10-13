@@ -23,8 +23,10 @@ module ApplicationHelper
       return "logs"
     elsif controllers_in_settings.include? controller.controller_name
       return "settings"
-    else
+    elsif controller.controller_name == "home"
       return "home"
+    else
+      return ""
     end
 
   end

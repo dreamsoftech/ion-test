@@ -42,4 +42,38 @@
 			</ul>
 	  </div>
 	</div>
+<% elsif current_panel == "home" %>
+	<div class="widget stacked widget-table action-table">
+		<div class="widget-header">
+	    <i class="icon-th"></i>
+	    <h3>Developers</h3>
+	  </div> <!-- /widget-header -->
+	  <div class="widget-content">
+	  	<% unless @developers.nil? %>
+		  	<div class="panel-group" id="accordion">
+				<% @developers.each do |developer| %>
+				  <div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title">
+				        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= developer.id %>">
+				          <%= developer.name %>
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapse<%= developer.id %>" class="panel-collapse collapse">
+				      <div class="panel-body">
+								<ul class="nav nav-pills nav-stacked">
+									<% developer.job_sites.each do |js| %>
+									<li><a href="#"><%= js.name %></a></li>
+									<% end %>
+								</ul>
+				        
+				      </div>
+				    </div>
+				  </div>
+				<% end %>
+				</div>
+			<% end %>
+	  </div>
+	</div>
 <% end %>
