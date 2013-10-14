@@ -24,7 +24,7 @@
         <div class="form-group">
           <%= f.label :contact_email, "Supervisor", class: "col-sm-3" %>
           <div class="col-sm-8">
-            <%= f.input_field :user_id, collection: User.supervisor, class: "form-control" %>
+            <%= f.input_field :user_id, collection: @supervisors, class: "form-control" %>
           </div>
         </div>
 

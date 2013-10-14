@@ -3,6 +3,12 @@ class JobSitesController < ApplicationController
 
   def index
   	@job_sites = JobSite.paginate(page: params[:page], per_page: 10)
+    @supervisors = User.supervisor
+
+    if @supervisors.count == 0
+      redirect_to users_path, notice: "There is no supervisors. Please add supervisor first"
+    end
+
     if Developer.count == 0
       redirect_to developers_path, notice: "There is no developers. Please add developer first"
     end

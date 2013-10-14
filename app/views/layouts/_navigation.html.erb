@@ -1,5 +1,7 @@
 
 <%= render 'layouts/top' %>
-<% if user_signed_in? %>
+<% if user_signed_in? and current_user.has_role? :admin %>
   <%= render 'layouts/sub_navbar' %>
+<% else %>
+	<br>
 <% end %>

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :job_sites
 
-  scope :supervisor , joins(:roles).where("roles.name == 'supervisor'")
+  scope :supervisor , joins(:roles).where("roles.name = 'supervisor'")
 
   def name
     last_name = "" if last_name.nil?

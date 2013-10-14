@@ -5,4 +5,6 @@ class JobSite < ActiveRecord::Base
   belongs_to :user
   belongs_to :supplier
 
+  has_many :phase
+
 end
