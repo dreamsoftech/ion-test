@@ -13,9 +13,10 @@ module ApplicationHelper
   end
 
   def current_panel
-    controllers_in_admin_panel  = %w[developers job_sites suppliers products purchase_orders]
+    controllers_in_admin_panel  = %w[developers job_sites phases suppliers products purchase_orders]
     controllers_in_logs         = %w[emails events]
     controllers_in_settings     = %w[settings users]
+    controllers_in_home         = %w[home]
 
     if controllers_in_admin_panel.include? controller.controller_name
       return "admin"
@@ -23,7 +24,7 @@ module ApplicationHelper
       return "logs"
     elsif controllers_in_settings.include? controller.controller_name
       return "settings"
-    elsif controller.controller_name == "home"
+    elsif controllers_in_home.include? controller.controller_name
       return "home"
     else
       return ""
@@ -41,6 +42,8 @@ module ApplicationHelper
 
   def active_left_bar(params)
     if controller.controller_name == params
+      return "class=active"
+    elsif params == "job_sites" && job_site_show
       return "class=active"
     else
       return ""

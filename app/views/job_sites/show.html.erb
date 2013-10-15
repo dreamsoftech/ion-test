@@ -1,0 +1,70 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-job_site"></i>
+    <h3><%= link_to "Job Sites", job_sites_path %> > <%= @job_site.name %></h3>
+  </div> <!-- /widget-header -->
+
+  <div class="widget-content">
+    <table class="table none-border">
+      <tbody>
+        <tr>
+          <td><b>Name</b></td>
+          <td><%= @job_site.name %></td>
+          <td><b>Location</b></td>
+          <td><%= @job_site.location %></td>
+        </tr>
+        <tr>
+        	<td><b>Supervisor</b></td>
+          <td><%= @job_site.user.name %></td>
+        	<td><b>Builder</b></td>
+          <td><%= @job_site.developer.name %></td>
+        </tr>
+        <tr>
+        	<td><b>Supplier</b></td>
+          <td><%= @job_site.supplier.name %></td>
+        	<td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+
+    <div class="widget stacked widget-table" id="new-phase">
+      <%= form_for @phase, url: phases_path, remote: true do |f| %>
+      <div class="widget-header">
+        <h3>Phases</h3>
+          <div class="input-group pull-right" style="width: 220px; margin-right: 20px;">
+            <%= f.text_field :name, class: "form-control", style: "height: 29px", placeholder: "Input Phase Name" %>
+            <%= hidden_field_tag :job_site_id, @job_site.id %>
+            <span class="input-group-btn">
+              <button class="btn btn-default" style="line-height: 15px;">Add</button>
+            </span>
+          </div><!-- /input-group -->
+      </div>
+      <% end %>
+      <div class="widget-content" style="min-height: 200px;">
+        <table class="table table-striped table-bordered" id="phase_list">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Phase Name</th>
+              <th style="width:25%">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @phases.each do |p, i| %>
+              <tr id="phase<%= p.id %>">
+                <td><%= p.id %></td>
+                <td><%= p.name %></td>
+                <td>
+                  <%= link_to '<i class="icon-pencil"></i> Edit'.html_safe, phase_path(p), class: "btn btn-default btn-xs" %>
+                  <%= link_to("<i class='icon-remove'></i>Remove".html_safe, phase_path(p), :data => { :confirm => "Are you sure?" }, remote: true, :method => :delete, :class => 'btn btn-default btn-xs') %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

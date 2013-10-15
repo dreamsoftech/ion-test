@@ -11,7 +11,7 @@ class SuppliersController < ApplicationController
       product_ids = params[:products].keys
 
       product_ids.each do |product_id|
-        supplier_product = SupplierProducts.new
+        supplier_product = SupplierProduct.new
         supplier_product.product_id = product_id
         supplier_product.supplier_id = supplier.id
 

@@ -17,17 +17,16 @@
         <div class="container">
           <div class="row">
             
+            <%= render 'layouts/messages' %>
             <% if current_panel == "" %>
               <div class="col-sm-12">
-                <%= render 'layouts/messages' %>
                 <%= yield %>
               </div>
             <% else %>
-              <div class="col-sm-3">
+              <div class="col-sm-4 col-md-3">
                 <%= render 'layouts/leftbar' %>
               </div>
-              <div class="col-md-9">
-                <%= render 'layouts/messages' %>
+              <div class="col-sm-8 col-md-9">
                 <%= yield %>
               </div>
             <% end %>

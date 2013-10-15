@@ -1,0 +1,30 @@
+<div class="widget stacked widget-table action-table">   
+  <div class="widget-header">
+    <h3>
+      <a href="/">Home</a> >
+      <a href="/"></a> >
+    </h3>
+  </div> <!-- /widget-header -->
+  
+  <div class="widget-content">
+    
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Phase Name</th>
+          <th>Budget Progress</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @phases.each_with_index do |p, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= p.name %></td>
+          <td><%= "p.budget_progress" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div> <!-- /widget-content -->
+</div>

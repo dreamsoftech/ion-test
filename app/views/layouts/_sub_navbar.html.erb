@@ -8,26 +8,23 @@
 		<div class="container">
 			
 			<a href="javascript:;" class="subnav-toggle" data-toggle="collapse" data-target=".subnav-collapse">
-		      <span class="sr-only">Toggle navigation</span>
-		      <i class="icon-reorder"></i>
-		      
-		    </a>
+	      <span class="sr-only">Toggle navigation</span>
+	      <i class="icon-reorder"></i>
+	    </a>
 
 			<div class="collapse subnav-collapse">
 				<ul class="mainnav">
-				
 					<li class="<%= active_sub_menu('home') %>">
 						<a href="/">
 							<i class="icon-home"></i>
 							<span>Home</span>
 						</a>
 					</li>
-					<% if current_user.has_role? :admin %>
 					<li class="<%= active_sub_menu('admin') %>">					
 						<a href="/developers">
 							<i class="icon-th"></i>
 							<span>Admin Panel</span>
-						</a>	    		
+						</a>
 					</li>
 
 					<li class="<%= active_sub_menu('logs') %>">
@@ -43,8 +40,6 @@
 							<span>Settings</span>
 						</a>	    
 					</li>
-					<% end %>
-
 				</ul>
 			</div> <!-- /.subnav-collapse -->
 

@@ -1,0 +1,77 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-phase"></i>
+    <h3>
+      <%= link_to "Job Sites", job_sites_path %> > <%= link_to @phase.job_site.name, job_site_path(@phase.job_site) %> > <%= @phase.name %>
+    </h3>
+  </div> <!-- /widget-header -->
+
+  <div class="widget-content">
+    <table class="table none-border">
+      <tbody>
+        <tr>
+          <td><b>Name</b></td>
+          <td><%= @phase.name %></td>
+          <td><b>Job Site</b></td>
+          <td><%= @phase.job_site.name %></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+
+    <div class="row widget display-none" id="new_lot_div">
+      <div class="col-sm-6">
+        <%= form_for @lot, url: lots_path, remote: true do |f| %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Input Lot Name" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :budget %>
+            <%= f.text_field :budget, class: "form-control", placeholder: "Input Budget" %>
+          </div>
+          <div class="form-group">
+            <%= hidden_field_tag :phase_id, @phase.id %>
+            <button class="btn btn-default btn-primary">Add</button>
+            <a id="collaspe_lot_div" class="btn btn-default">Cancel</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="widget stacked widget-table" id="new-phase">
+      <div class="widget-header">
+        <h3>Lots</h3>
+        <span class="pull-right margin-right-20">
+          <a onclick="$('#new_lot_div').fadeIn('fast');">Add Lot</a>
+        </span>
+      </div>
+      <div class="widget-content" style="min-height: 200px;">
+        <table class="table table-striped table-bordered" id="lot_list">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Lot Name</th>
+              <th>Budget</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @lots.each do |p, i| %>
+              <tr id="lot<%= p.id %>">
+                <td><%= p.id %></td>
+                <td><%= p.name %></td>
+                <td><%= p.budget %></td>
+                <td>
+                  <a class="btn btn-default btn-xs">
+                    <i class="icon-pencil"></i> Edit
+                  </a>
+                  <%= link_to("<i class='icon-remove'></i>Remove".html_safe, lot_path(p), :data => { :confirm => "Are you sure?" }, remote: true, :method => :delete, :class => 'btn btn-default btn-xs') %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

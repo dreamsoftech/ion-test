@@ -6,7 +6,7 @@
         
   <div class="widget-content">
     <div class="table-responsive">
-      <table class="table table-condensed">
+      <table class="table table-striped table-bordered">
         <thead>
           <tr>
             <th>PO Number</th>
@@ -20,7 +20,7 @@
         <tbody>
         <% @purchase_orders.each do |purchase_order| %>
           <tr>
-            <td><%= link_to purchase_order.name, purchase_order %></td>
+            <td><%= purchase_order.name %></td>
             <td><%= purchase_order.email %></td>
             <td><%= purchase_order.created_at.to_date %></td>
             <td><%= purchase_order.roles.first.name.titleize unless purchase_order.roles.first.nil? %></td>

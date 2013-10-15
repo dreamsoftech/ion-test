@@ -14,6 +14,12 @@ class JobSitesController < ApplicationController
     end
   end
 
+  def show
+    @job_site = JobSite.find(params[:id])
+    @phases = @job_site.phases
+    @phase = Phase.new
+  end
+
   def create
   	job_site = JobSite.new(params[:job_site])
   	if job_site.save
