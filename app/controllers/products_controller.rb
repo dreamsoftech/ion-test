@@ -3,6 +3,9 @@ class ProductsController < ApplicationController
 
   def index
   	@products = Product.paginate(page: params[:page], per_page: 10)
+    if @products.empty?
+      flash[:error] = "There is no existing products."
+    end
   end
 
   def create

@@ -25,5 +25,5 @@ $(function(){
 
   $('#products_div .fadeout').on('click', function(){
     $('#add-product-div').fadeOut('slow');
-  })
+  });
 });

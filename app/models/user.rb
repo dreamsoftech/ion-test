@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon
   attr_accessor :stripe_token, :coupon
 
-  has_many :job_sites
+  has_many :job_sites, dependent: :destroy
 
   scope :supervisor , joins(:roles).where("roles.name = 'supervisor'")
 

@@ -12,6 +12,10 @@ class JobSitesController < ApplicationController
     if Developer.count == 0
       redirect_to developers_path, notice: "There is no developers. Please add developer first"
     end
+
+    if @job_sites.empty?
+      flash[:error] = "There is no existing job sites."
+    end
   end
 
   def show

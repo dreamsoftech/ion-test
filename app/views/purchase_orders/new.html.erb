@@ -1,0 +1,30 @@
+<div class="widget stacked">
+  <div class="widget-header">
+    <i class="icon-product"></i>
+    <h3>Purchase Orders > New Purchase Order</h3>
+  </div> <!-- /widget-header -->
+        
+  <div class="widget-content">
+    <div class="row-fluid">
+      <%= simple_form_for :purchase_order, url: purchase_orders_path, :html => { :class => 'form-horizontal' } do |f| %>
+
+        <div class="form-group">
+          <%= f.label :lot_id, class: "col-sm-3" %>
+          <div class="col-sm-6">
+            <%= f.input_field :lot_id, collection: Lot.all, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-8">
+            <%= f.submit "Create", :class => "btn btn-primary" %>
+            <a onclick= "history.back();" type="button" class="btn btn-default">Back</a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="table-responsive">
+    </div>
+  </div>
+</div>

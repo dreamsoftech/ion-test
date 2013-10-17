@@ -3,6 +3,10 @@ class DevelopersController < ApplicationController
 
   def index
   	@developers = Developer.paginate(page: params[:page], per_page: 10)
+
+    if @developers.empty?
+      flash[:error] = "There is no existing developers."
+    end
   end
 
   def create

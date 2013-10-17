@@ -3,6 +3,9 @@ class SuppliersController < ApplicationController
 
   def index
   	@suppliers = Supplier.paginate(page: params[:page], per_page: 10)
+    if @suppliers.empty?
+      flash[:error] = "There is no existing suppliers."
+    end
   end
 
   def create
