@@ -61,10 +61,10 @@
                 </thead>
                 <tbody>
                   <tr id="template_line_item" class="hidden">
-                    <td id="lot_name"><span></span><%= hidden_field_tag %></td>
-                    <td id="product_name"><span></span><%= hidden_field_tag %></td>
+                    <td id="lot_name"><span></span><%= hidden_field_tag :lot_id %></td>
+                    <td id="product_name"><span></span><%= hidden_field_tag :product_id%></td>
                     <td id="product_quantity">
-                      <span></span><%= hidden_field_tag %>
+                      <span></span><%= hidden_field_tag :product_quantity %>
                     </td>
                     <td id="action">
                       <a class="btn btn-primary btn-xs remove"><i class="icon-remove"></i> Remove
