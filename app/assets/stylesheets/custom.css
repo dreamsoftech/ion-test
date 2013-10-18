@@ -21,7 +21,7 @@ html, body
 
 #main
 {
-	padding-bottom: 60px;
+	padding-bottom: 80px;
 }
 .footer
 {
@@ -96,4 +96,25 @@ html, body
 .display-none
 {
 	display: none;
+}
+
+.min-height-200
+{
+	min-height: 200px;
+}
+
+#add_phase_btn
+{
+	line-height: 15px;
+}
+
+#phase_name
+{
+	height: 29px;
+}
+
+.img-width-150
+{
+	width: 150px;
+	height: 150px;
 }

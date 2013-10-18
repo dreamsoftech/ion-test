@@ -16,6 +16,7 @@ class LotsController < ApplicationController
   	lot = Lot.new(params[:lot])
   	lot.phase_id = params[:phase_id]
   	if lot.save
+      create_event("Lot(#{lot.name}) is created.")
 			respond_with(lot, :status => 201, :default_template => :show)
 		else
 			render json: lot.errors, status: :unprocessable_entity
@@ -25,6 +26,7 @@ class LotsController < ApplicationController
   def update
   	lot = Lot.find(params[:lot])
   	if lot.update_attributes(params[:lot])
+      create_event("Lot(#{lot.name}) is updated.")
 			respond_with(lot, :status => 200, :default_template => :show)
 		else
 			render json: lot.errors, status: :unprocessable_entity
@@ -35,6 +37,7 @@ class LotsController < ApplicationController
 		@lot = Lot.find(params[:id])
 
 		if @lot.destroy
+      create_event("Lot(#{lot.name}) is deleted.")
       render json: @lot
     else
       respond_with(@lot.errors, status: :unprocessable_entity)
@@ -45,5 +48,12 @@ class LotsController < ApplicationController
 
   def admin_authorization
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
+  end
+
+  def create_event(summary)
+    event = Event.new
+    event.summary = summary
+    event.user_id = current_user.id
+    event.save
   end
 end

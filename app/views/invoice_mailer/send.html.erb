@@ -1,0 +1,81 @@
+<style type="text/css">
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #dddddd;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: #f5f5f5;
+}
+
+.none-border
+{
+	border: none;
+}
+
+</style>
+<div width="700px">
+  <table class="table none-border">
+    <tbody>
+      <tr>
+        <td><b>Supervisor</b></td>
+        <td><%= @job_site.name %></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><b>Job Site</b></td>
+        <td><%= @job_site.name %></td>
+        <td><b>Phase</b></td>
+        <td><%= @phase.name %></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+
+  <h3>Orders</h3>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Lot</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @line_items.each do |line_item, i| %>
+        <tr>
+          <td><%= line_item.id %></td>
+          <td><%= line_item.lot.name unless line_item.lot.nil? %></td>
+          <td><%= line_item.product.name unless line_item.product.nil? %></td>
+          <td><%= line_item.product.price unless line_item.product.nil? %></td>
+          <td><%= line_item.quantity %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

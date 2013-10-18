@@ -27,7 +27,9 @@ class JobSitesController < ApplicationController
   def create
   	job_site = JobSite.new(params[:job_site])
   	if job_site.save
-  		redirect_to job_sites_path, notice: "New JobSite is successfully created."
+      create_event("Job site(#{job_site.name}) is created.")
+  		
+      redirect_to job_sites_path, notice: "New JobSite is successfully created."
   	else
   		redirect_to job_sites_path, notice: "Unable to create new job_site."
   	end
@@ -36,7 +38,9 @@ class JobSitesController < ApplicationController
   def update
   	job_site = JobSite.find(params[:id])
   	if job_site.update_attributes params[:job_site]
-  		redirect_to job_sites_path, notice: "JobSite is successfully updated."
+      create_event("Job site(#{job_site.name}) is updated.")
+  		
+      redirect_to job_sites_path, notice: "JobSite is successfully updated."
   	else
   		redirect_to job_sites_path, notice: "Unable to update job_site info."
   	end
@@ -45,6 +49,7 @@ class JobSitesController < ApplicationController
   def destroy
 		job_site = JobSite.find(params[:id])
 		job_site.destroy
+    create_event("Job site(#{job_site.name}) is deleted.")
 
   	redirect_to job_sites_path, notice: "JobSite is successfully removed."
 	end
@@ -53,5 +58,12 @@ class JobSitesController < ApplicationController
 
   def admin_authorization
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
+  end
+
+  def create_event(summary)
+    event = Event.new
+    event.summary = summary
+    event.user_id = current_user.id
+    event.save
   end
 end

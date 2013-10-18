@@ -17,6 +17,7 @@ class PhasesController < ApplicationController
   	phase = Phase.new(params[:phase])
   	phase.job_site_id = params[:job_site_id]
   	if phase.save
+      create_event("Phase(#{phase.name}) is created.")
 			respond_with(phase, :status => 201, :default_template => :show)
 		else
 			render json: phase.errors, status: :unprocessable_entity
@@ -26,6 +27,7 @@ class PhasesController < ApplicationController
   def update
   	phase = Phase.find(params[:phase])
   	if phase.update_attributes(params[:phase])
+      create_event("Phase(#{phase.name}) is updated.")
 			respond_with(phase, :status => 200, :default_template => :show)
 		else
 			render json: phase.errors, status: :unprocessable_entity
@@ -36,6 +38,7 @@ class PhasesController < ApplicationController
 		@phase = Phase.find(params[:id])
 
 		if @phase.destroy
+      create_event("Phase(#{phase.name}) is deleted.")
       render json: @phase
     else
       respond_with(@phase.errors, status: :unprocessable_entity)
@@ -47,4 +50,12 @@ class PhasesController < ApplicationController
   def admin_authorization
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
   end
+
+  def create_event(summary)
+    event = Event.new
+    event.summary = summary
+    event.user_id = current_user.id
+    event.save
+  end
+
 end

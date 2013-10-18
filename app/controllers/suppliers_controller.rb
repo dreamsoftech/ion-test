@@ -20,6 +20,7 @@ class SuppliersController < ApplicationController
 
         supplier_product.save
       end
+      create_event("Supplier(#{supplier.name}) is created.")
 
   		redirect_to suppliers_path, notice: "New Supplier is successfully created."
   	else
@@ -46,6 +47,7 @@ class SuppliersController < ApplicationController
   def update
   	supplier = Supplier.find(params[:id])
   	if supplier.update_attributes params[:supplier]
+      create_event("Supplier(#{supplier.name}) is updated.")
   		redirect_to suppliers_path, notice: "Supplier is successfully updated."
   	else
   		redirect_to suppliers_path, notice: "Unable to update supplier info."
@@ -55,6 +57,7 @@ class SuppliersController < ApplicationController
   def destroy
 		supplier = Supplier.find(params[:id])
 		supplier.destroy
+    create_event("Supplier(#{supplier.name}) is deleted.")
 
   	redirect_to suppliers_path, notice: "Supplier is successfully removed."
 	end
@@ -64,4 +67,12 @@ class SuppliersController < ApplicationController
   def admin_authorization
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
   end
+
+  def create_event(summary)
+    event = Event.new
+    event.summary = summary
+    event.user_id = current_user.id
+    event.save
+  end
+
 end

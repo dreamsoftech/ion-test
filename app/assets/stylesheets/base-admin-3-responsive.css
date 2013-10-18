@@ -89,8 +89,8 @@ upgrading in the future easier. ***
     margin-left: -15px;
   }
   .footer {
-    margin-right: -20px;
-    margin-left: -20px;
+    *margin-right: -20px;
+    *margin-left: -20px;
   }
   .footer #footer-terms {
     margin-top: 1em;

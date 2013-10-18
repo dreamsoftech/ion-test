@@ -26,4 +26,7 @@ Amco::Application.routes.draw do
   
   resources :products
   resources :purchase_orders
+  
+  resources :events
+
 end

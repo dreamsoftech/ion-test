@@ -8,13 +8,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case current_user.roles.first.name
       when 'admin'
-        users_path
-      when 'silver'
-        content_silver_path
-      when 'gold'
-        content_gold_path
-      when 'platinum'
-        content_platinum_path
+        developers_path
       else
         root_path
     end

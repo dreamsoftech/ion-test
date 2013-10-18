@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   attr_accessor :stripe_token, :coupon
 
   has_many :job_sites, dependent: :destroy
-
+  has_many :events
+  
   scope :supervisor , joins(:roles).where("roles.name = 'supervisor'")
 
   def name

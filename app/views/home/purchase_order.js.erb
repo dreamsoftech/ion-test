@@ -1,0 +1,32 @@
+<script>
+var lot_budgets = new Array();
+var product_prices = new Array();
+
+<% @lots.each do |lot| %>
+	lot_budgets.push(<%= lot.left_budget_percent %>);
+<% end %>
+
+<% products = @supplier.products %>
+
+<% products.each do |product| %>
+	product_prices.push(<%= product.price %>);
+<% end %>
+
+if (lot_budgets.length > 0)
+	$("#left_budget").text(lot_budgets[0]);
+
+console.log(product_prices)
+if (product_prices.length > 0)
+	$("span#product_price").text(product_prices[0]);
+
+$("select#lots").on("change", function(){
+	var index = parseInt($("select#lots option:selected").val());
+	$("#left_budget").text(lot_budgets[index-1]);
+});
+
+$("select#products").on("change", function(){
+	var index = parseInt($("select#products option:selected").val());
+	$("span#product_price").text(product_prices[index-1]);
+});
+
+</script>

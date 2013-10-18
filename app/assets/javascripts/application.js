@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require_directory ./plugins
 //= require_directory ./libs
+//= require_directory ./date-time
 //= require_directory ./demo
 //= require_tree
 //= require_self

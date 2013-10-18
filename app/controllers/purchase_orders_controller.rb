@@ -23,6 +23,10 @@ class PurchaseOrdersController < ApplicationController
         rescue
         end
       end
+      create_event("Purchase Order(#{purchase_order.id}) is created.")
+
+      InvoiceMailer.send(purchase_order) # send email
+
       js = purchase_order.phase.job_site
       developer_id = js.developer.id
   		redirect_to "/?job_site_id=#{js.id}&developer_id=#{developer.id}", notice: "New PurchaseOrder is successfully created."
@@ -42,6 +46,7 @@ class PurchaseOrdersController < ApplicationController
   def update
   	purchase_order = PurchaseOrder.find(params[:id])
   	if purchase_order.update_attributes params[:purchase_order]
+      create_event("Purchase Order(#{purchase_order.id}) is updated.")
   		redirect_to purchase_orders_path, notice: "PurchaseOrder is successfully updated."
   	else
   		redirect_to purchase_orders_path, notice: "Unable to update purchase_order info."
@@ -51,6 +56,7 @@ class PurchaseOrdersController < ApplicationController
   def destroy
 		purchase_order = PurchaseOrder.find(params[:id])
 		purchase_order.destroy
+    create_event("Purchase Order(#{purchase_order.id}) is deleted.")
 
   	redirect_to purchase_orders_path, notice: "PurchaseOrder is successfully removed."
 	end
@@ -60,4 +66,12 @@ class PurchaseOrdersController < ApplicationController
   def admin_authorization
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
   end
+
+  def create_event(summary)
+    event = Event.new
+    event.summary = summary
+    event.user_id = current_user.id
+    event.save
+  end
+
 end
