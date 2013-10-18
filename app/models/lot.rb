@@ -5,12 +5,15 @@ class Lot < ActiveRecord::Base
   has_many :line_items
 
   def left_budget_percent
-  	line_items = self.line_items
-  	total = 0
-  	line_items.each do |line_item|
-  		total += line_item.product.price * line_item.quantity
-  	end
+  	return left_budget / budget * 100
+  end
 
-  	return 100 - total / budget * 100
+  def left_budget
+    line_items = self.line_items
+    total = 0
+    line_items.each do |line_item|
+      total += line_item.product.price * line_item.quantity
+    end
+    return budget - total
   end
 end

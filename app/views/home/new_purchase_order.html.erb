@@ -25,7 +25,7 @@
           <div class="form-group">
             <label class="col-sm-4">Budget</label>
             <div class="col-sm-8">
-              <span id="left_budget"></span>
+              <span id="left_budget"></span>$
             </div>
           </div>
 
@@ -71,6 +71,7 @@
                     <th>#</th>
                     <th>Product</th>
                     <th>Quantity</th>
+                    <th>Amount</th>
                     <th style="width:25%">Action</th>
                   </tr>
                 </thead>
@@ -81,7 +82,7 @@
                     <td id="product_quantity">
                       <span></span><%= hidden_field_tag :product_quantity %>
                     </td>
-                    <td id="order_amount">
+                    <td id="order_amount"></td>
                     <td id="action">
                       <a class="btn btn-primary btn-xs remove"><i class="icon-remove"></i> Remove
                       </a>

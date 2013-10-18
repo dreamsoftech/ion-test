@@ -1,32 +1,31 @@
 <script>
-var lot_budgets = new Array();
-var product_prices = new Array();
+var lot_budgets = {};
+var product_prices = {};
 
 <% @lots.each do |lot| %>
-	lot_budgets.push(<%= lot.left_budget_percent %>);
+	lot_budgets[<%=lot.id%>] = <%= lot.left_budget %>;
 <% end %>
 
 <% products = @supplier.products %>
 
 <% products.each do |product| %>
-	product_prices.push(<%= product.price %>);
+	product_prices[<%=product.id%>] = <%= product.price %>;
 <% end %>
 
-if (lot_budgets.length > 0)
-	$("#left_budget").text(lot_budgets[0]);
+if (!lot_budgets.empty)
+	$("#left_budget").text(<%= @lots.first.left_budget %>);
 
-console.log(product_prices)
-if (product_prices.length > 0)
-	$("span#product_price").text(product_prices[0]);
+if (!product_prices.empty)
+	$("span#product_price").text(<%= products.first.price %>);
 
 $("select#lots").on("change", function(){
 	var index = parseInt($("select#lots option:selected").val());
-	$("#left_budget").text(lot_budgets[index-1]);
+	$("#left_budget").text(lot_budgets[index]);
 });
 
 $("select#products").on("change", function(){
 	var index = parseInt($("select#products option:selected").val());
-	$("span#product_price").text(product_prices[index-1]);
+	$("span#product_price").text(product_prices[index]);
 });
 
 </script>

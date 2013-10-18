@@ -4,8 +4,9 @@ $(function(){
 
 		var total = parseInt($("#quantity").val()) * parseInt($("span#product_price").text());
 		var budget = parseInt($("#left_budget").text());
-		var lot_index = parseInt($("select#lots option:selected").val()) - 1;
-		var product_index = parseInt($("select#products option:selected").val()) - 1;
+		var lot_index = parseInt($("select#lots").val());
+		var product_index = parseInt($("select#products").val());
+		
 
 		if (!total || !budget || total > budget)
 		{
@@ -35,6 +36,8 @@ $(function(){
 		template.find("#product_name > input").val($("#products").val());
 		template.find("#product_name > input").attr("id", product_index); // put the product index into input id field
 		template.find("#product_name > input").attr("name", "product_ids[]");
+		
+		template.find("#order_amount").text(total);
 		
 		template.find("#product_quantity > span").html($("#quantity").val());
 		template.find("#product_quantity > input").val($("#quantity").val());

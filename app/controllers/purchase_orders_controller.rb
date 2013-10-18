@@ -25,13 +25,13 @@ class PurchaseOrdersController < ApplicationController
       end
       create_event("Purchase Order(#{purchase_order.id}) is created.")
 
-      InvoiceMailer.send(purchase_order) # send email
+      InvoiceMailer.send_mail(purchase_order).deliver # send email
 
       js = purchase_order.phase.job_site
       developer_id = js.developer.id
-  		redirect_to "/?job_site_id=#{js.id}&developer_id=#{developer.id}", notice: "New PurchaseOrder is successfully created."
+  		redirect_to "/?job_site_id=#{js.id}&developer_id=#{developer_id}", notice: "New PurchaseOrder is successfully created."
   	else
-  		redirect_to "/?job_site_id=#{js.id}&developer_id=#{developer.id}", notice: "Unable to create new purchase_order."
+  		redirect_to "/?job_site_id=#{js.id}&developer_id=#{developer_id}", notice: "Unable to create new purchase_order."
   	end
   end
 

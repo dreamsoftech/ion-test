@@ -1,7 +1,7 @@
 class InvoiceMailer < ActionMailer::Base
   default from: "admin@amco.com"
 
-  def send(purchase_order)
+  def send_mail(purchase_order)
   	@purchase_order = purchase_order
   	@phase = purchase_order.phase
   	@job_site = @phase.job_site
@@ -9,6 +9,6 @@ class InvoiceMailer < ActionMailer::Base
   	@supplier = @job_site.supplier
   	@line_items = @purchase_order.line_items
 
-    mail(from: @supervisor.email, to: @supplier.email, subject: "New Purchase Order").deliver
+    mail(from: @supervisor.email, to: @supplier.email, subject: "New Purchase Order")
   end
 end
