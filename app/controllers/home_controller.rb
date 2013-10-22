@@ -2,11 +2,9 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, :before_query
 	
 	def index
-
-		unless params[:job_site_id].nil?
-			@job_site = JobSite.find(params[:job_site_id])
-			@phases = @job_site.phases unless @job_site.nil?
-		end
+		@products = Product.all
+		@product = Product.find_by_id(params[:product_id])
+		@photo_url = @product.sku unless @product.nil?
 	end
 
 	def new_purchase_order

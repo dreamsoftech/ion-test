@@ -1,18 +1,21 @@
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!, :admin_authorization
+  before_filter :authenticate_user!
 
   def index
   	@products = Product.paginate(page: params[:page], per_page: 10)
     if @products.empty?
       flash[:error] = "There is no existing products."
     end
+
+    redirect_to root_path
   end
 
   def create
   	product = Product.new(params[:product])
   	if product.save
       create_event("Product(#{product.name}) is created.")
-  		redirect_to products_path, notice: "New Product is successfully created."
+      redirect_to root_path(product_id: product.id)
+  		# redirect_to products_path, notice: "New Product is successfully created."
   	else
   		redirect_to products_path, notice: "Unable to create new product."
   	end

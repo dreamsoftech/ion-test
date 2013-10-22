@@ -26,4 +26,11 @@ $(function(){
   $('#products_div .fadeout').on('click', function(){
     $('#add-product-div').fadeOut('slow');
   });
+
+  $(".new-product-link").on("click", function(){
+    $("#products").fadeOut("fast", function(){
+      $("#new-product-div").fadeIn("fast");
+    });
+
+  });
 });
