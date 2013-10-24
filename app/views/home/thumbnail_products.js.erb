@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
   setInterval(function(){
   	console.log("hey");
     $.getJSON("http://localhost:3000/products",function(result){
@@ -7,4 +7,4 @@
         $("#product-thumbnails").append("<image class='img-thumbnail' src='" + field + "'/>");
     })
   }, 3000);
- </script>
+</script>
