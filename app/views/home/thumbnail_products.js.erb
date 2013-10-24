@@ -1,7 +1,7 @@
 <script type="text/javascript">
   setInterval(function(){
   	
-    $.getJSON("http://localhost:3000/products",function(result){
+    $.getJSON("http://uploading-test.herokuapp.com/products",function(result){
     	$("#product-thumbnails").html("");
       $.each(result, function(i, field){
         $("#product-thumbnails").append("<image class='img-thumbnail' src='" + field + "'/>");
