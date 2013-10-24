@@ -1,13 +1,9 @@
-<div class="widget stacked">   
-  <div class="widget-header">
-    <h3>
-      Products
-    </h3>
-  </div> <!-- /widget-header -->
-  
+<div class="widget stacked">     
   <div id="product-thumbnails" class="widget-content min-height-200">
     <% @products.each do |p| %>
-      <%= image_tag p.photo.url(:medium), class: "img-thumbnail" %>
+      <a data-toggle="modal" href="#product-<%= p.id %>">
+      	<%= image_tag p.photo.url(:medium), class: "img-thumbnail" %></a>
+      <%= render partial: "modal", locals: {product: p} %>
     <% end %>
   </div> <!-- /widget-content -->
 </div>

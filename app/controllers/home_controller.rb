@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :before_query
-  layout false, only: ["product_thumbnails"]
+  layout "blank", only: ["product_thumbnails"]
 
 	
 	def index
@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 
 	def product_thumbnails
   	@products = Product.paginate(page: params[:page], per_page: 10)
-		
+
 	end
 
 	private

@@ -1,0 +1,17 @@
+<div id="product-<%= product.id %>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">&#215;</a>
+        <h4>Product</h4>
+      </div>
+      <div class="modal-body">
+        <% unless product.nil? %>
+          <div class="col-md-12">
+            <%= image_tag product.photo.url, class: "img-thumbnail", style: "width: 500px; height: auto;" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
