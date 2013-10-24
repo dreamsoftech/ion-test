@@ -6,8 +6,14 @@
   </div> <!-- /widget-header -->
   
   <div class="widget-content min-height-200">
-    <iframe src="/product_thumbnails" style="width: 100%; height: 500px;">
-    </iframe>
+    <ul class="thumbnails">
+      <% @products.each do |p| %>
+        <li>
+          <a class="thumbnail" href="<%= product_path(p) %>" target="_blank">
+            <%= image_tag p.photo.url(:medium) %></a>
+        </li>
+      <% end %>
+    </ul>
   </div> <!-- /widget-content -->
 </div>
 <div id="product-detail" class="modal fade" role="dialog">
@@ -15,7 +21,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <a class="close" data-dismiss="modal">&#215;</a>
-        <h4>Please put this url into your iframe: http://upload-testing.herokuapp.com/product_thumbnails</h4>
+        <h5>Please put this url into your iframe: http://upload-testing.herokuapp.com/product_thumbnails</h5>
       </div>
       <div class="modal-body">
         <% unless @product.nil? %>

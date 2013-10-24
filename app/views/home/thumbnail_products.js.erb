@@ -1,17 +1,17 @@
 <script type="text/javascript">
+  var url = "http://uploading-test.herokuapp.com/products"; 
+  // var url = "http://localhost:3000"; 
   setInterval(function(){
-  	
-    $.getJSON("http://uploading-test.herokuapp.com/products",function(result){
+    $.getJSON(url + "/products",function(result){
     	$("#product-thumbnails").html("");
     	var thumbnails = $("<ul class='thumbnails'></ul>");
     	thumbnails.css("display", "none");
       $.each(result, function(i, field){
+      	console.log(field);
     		var template = $("#template").clone();
     		template.removeClass("hidden");
-      	template.find("#modal-link").attr("href", "#product-" + i);
-      	template.find("img#product-img").attr("src", field);
-      	template.find(".modal").attr("id", "product-" + i);
-      	template.find("#modal-img").attr("src", field);
+      	template.find("#modal-link").attr("href", url + "/products/" + field[0]);
+      	template.find("img#product-img").attr("src", field[1]);
       	template.attr("id", "");
       	thumbnails.append(template);
       });

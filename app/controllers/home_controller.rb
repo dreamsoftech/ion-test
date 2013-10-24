@@ -5,7 +5,8 @@ class HomeController < ApplicationController
 	
 	def index
 		@products = Product.all
-		@product = Product.find_by_id(params[:product_id])
+		@product = Product.find_by_id(cookies[:product_id])
+		cookies[:product_id] = nil
 		@photo_url = @product.sku unless @product.nil?
 	end
 
