@@ -9,7 +9,7 @@
     <ul class="thumbnails">
       <% @products.each do |p| %>
         <li>
-          <a class="thumbnail" href="<%= product_path(p) %>" target="_blank">
+          <a class="thumbnail" href="<%= product_path(p) %>">
             <%= image_tag p.photo.url(:medium) %></a>
         </li>
       <% end %>
