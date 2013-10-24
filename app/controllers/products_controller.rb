@@ -3,11 +3,17 @@ class ProductsController < ApplicationController
 
   def index
   	@products = Product.paginate(page: params[:page], per_page: 10)
-    if @products.empty?
-      flash[:error] = "There is no existing products."
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render xml: @products}
+      format.json {
+        products_url = Array.new
+        @products.each do |product|
+          products_url.push product.photo.url(:medium)
+        end
+        render json: products_url
+      }
     end
-
-    redirect_to root_path
   end
 
   def create

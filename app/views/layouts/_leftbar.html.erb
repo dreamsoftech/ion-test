@@ -1,53 +1,4 @@
-<% if current_panel == "admin" %>
-	<div class="widget stacked">
-		<div class="widget-header">
-	    <i class="icon-th"></i>
-	    <h3>Admin Panel</h3>
-	  </div> <!-- /widget-header -->
-	  <div class="widget-content">
-			<ul class="nav nav-pills nav-stacked">
-				<li <%= active_left_bar "developers" %> ><a href="/developers">Developers</a></li>
-				<li <%= active_left_bar "job_sites" %> ><a href="/job_sites">Job Sites</a></li>
-				<li <%= active_left_bar "suppliers" %> ><a href="/suppliers">Suppliers</a></li>
-				<li <%= active_left_bar "products" %> ><a href="/products">Products</a></li>
-				<li <%= active_left_bar "purchase_orders" %> ><a href="/purchase_orders">Purchase Orders</a></li>
-			</ul>
-	  </div>
-	</div>
-<% elsif current_panel == "logs" %>
-	<div class="widget stacked">
-		<div class="widget-header">
-	    <i class="icon-th"></i>
-	    <h3>Logs</h3>
-	  </div> <!-- /widget-header -->
-	  <div class="widget-content">
-			<ul class="nav nav-pills nav-stacked">
-				<li <%= active_left_bar "events" %> ><a href="/events">Event Logs</a></li>
-				<li><a href="#">Emails</a></li>
-			</ul>
-	  </div>
-	</div>
-<% elsif current_panel == "settings" %>
-	<div class="widget stacked">
-		<div class="widget-header">
-	    <i class="icon-th"></i>
-	    <h3>Settings</h3>
-	  </div> <!-- /widget-header -->
-	  <div class="widget-content">
-			<ul class="nav nav-pills nav-stacked">
-				<li <%= active_left_bar "users" %> ><a href="/users">Users</a></li>
-				<li><a href="/products">Email Template</a></li>
-				<li><a href="#">Tax Setting</a></li>
-				<li><a href="#">Unit Setting</a></li>
-			</ul>
-	  </div>
-	</div>
-<% elsif current_panel == "home" %>
 	<div class="widget stacked widget-table action-table">
-		<div class="widget-header">
-	    <i class="icon-th"></i>
-	    <h3>Add product</h3>
-	  </div> <!-- /widget-header -->
 	  <div class="widget-content min-height-200">
 		  <div class="panel-group accordion" id="products">
 				<% ["Physical Product", "Digital Product", "Service", "Donation"].each do |product| %>
@@ -61,22 +12,30 @@
 				<% end %>
 			</div>
 
-			<div id="new-product-div" class="padding-20 display-none">
-				<%= simple_form_for Product.new do |f| %>
-					<%= f.input_field :name, class: "form-control form-group", placeholder: "Product Title" %>
-					<%= f.input_field :description, class: "form-control form-group", placeholder: "Product Description" %>
-					<%= f.input_field :price, class: "form-control form-group", placeholder: "Free" %>
-					<%= f.input_field :quantity, class: "form-control form-group", placeholder: "Unlimited" %>
-					<%= f.input_field :photo, class: "hidden" %>
+			<div id="new-product-div" class="display-none">
+				<div class="widget-header" id="leftbar-header">
+			    <i class="icon-job_site"></i>
+			    <h3>
+			    	Add Product
+			    	<span class="pull-right"><a id="back-to-product-menu"></a></span>
+			    </h3>
+			  </div> <!-- /widget-header -->
+			  <div class="padding-20">
+					<%= simple_form_for Product.new do |f| %>
+						<%= f.input_field :name, class: "form-control form-group", placeholder: "Product Title" %>
+						<%= f.input_field :description, class: "form-control form-group", placeholder: "Product Description" %>
+						<%= f.input_field :price, class: "form-control form-group", placeholder: "Free" %>
+						<%= f.input_field :quantity, class: "form-control form-group", placeholder: "Unlimited" %>
+						<%= f.input_field :photo, class: "hidden" %>
 
-					<div class="form-group">
-            <a class="btn btn-default pull-left product_photo_link">
-            	<i class="icon-picture"></i> Cover Photo
-            </a>
-            <%= f.submit "Add", :class => "btn btn-default pull-right" %>
-         	</div>
-				<% end %>
+						<div class="form-group">
+	            <a class="btn btn-default pull-left product_photo_link">
+	            	<i class="icon-picture"></i> Cover Photo
+	            </a>
+	            <%= f.submit "Add", :class => "btn btn-default pull-right" %>
+	         	</div>
+					<% end %>
+				</div>
 			</div>
 	  </div>
 	</div>
-<% end %>

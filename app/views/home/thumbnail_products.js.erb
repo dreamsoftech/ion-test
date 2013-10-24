@@ -1,0 +1,13 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+<script>
+  setInterval(function(){
+  	console.log("hey");
+    $.getJSON("http://localhost:3000/products",function(result){
+      $.each(result, function(i, field){
+        $("#product-thumbnails").append("<image class='img-thumbnail' src='" + field + "'/>");
+        console.log($("#product-thumbnails"));
+        console.log("<image class='img-thumbnail' src='" + field + "'/>");
+      });
+    })
+  }, 3000);
+ </script>

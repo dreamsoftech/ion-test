@@ -1,6 +1,7 @@
 Amco::Application.routes.draw do
 
   get "/new_purchase_order" => 'home#new_purchase_order'
+  get "/product_thumbnails" => 'home#product_thumbnails'
   
   authenticated :user do
     root :to => 'home#index'

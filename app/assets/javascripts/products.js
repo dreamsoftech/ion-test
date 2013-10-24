@@ -33,4 +33,11 @@ $(function(){
     });
 
   });
+
+  $("#back-to-product-menu").on("click", function(){
+    $("#products").fadeIn("fast", function(){
+      $("#new-product-div").fadeOut("fast");
+    });    
+  });
+
 });

@@ -1,0 +1,15 @@
+<div class="widget stacked">   
+  <div class="widget-header">
+    <h3>
+      Products
+    </h3>
+  </div> <!-- /widget-header -->
+  
+  <div id="product-thumbnails" class="widget-content min-height-200">
+    <% @products.each do |p| %>
+      <%= image_tag p.photo.url(:medium), class: "img-thumbnail" %>
+    <% end %>
+  </div> <!-- /widget-content -->
+</div>
+
+<%= render template: "home/thumbnail_products.js.erb" %>

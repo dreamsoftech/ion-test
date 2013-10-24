@@ -1,42 +1,36 @@
-<div class="widget stacked">
+<div class="widget stacked">   
   <div class="widget-header">
-    <i class="icon-product"></i>
-    <h3>Products</h3>
+    <h3>
+      Products
+    </h3>
   </div> <!-- /widget-header -->
-        
-  <div class="widget-content">
-    <div class="row-fluid action-div">
-      <a href="/products/new" class="btn btn-default pull-right">Create</a>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>SKU</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Unit</th>
-            <th>Registered</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= product.sku %></td>
-            <td><%= product.name %></td>
-            <td><%= product.price %></td>
-            <td><%= "GAL" %></td>
-            <td><%= product.created_at.to_date %></td>
-            <td>
-              <a href="<%= edit_product_path(product) %>" class="btn btn-default btn-sm"><i class="icon-edit"></i>Edit</a>
-              <%= link_to("<i class='icon-remove'></i>Delete".html_safe, product_path(product), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-sm') %>
-            </td>
-          </tr>
+  
+  <div class="widget-content min-height-200">
+    <% @products.each do |p| %>
+      <%= image_tag p.photo.url(:medium), class: "img-thumbnail" %>
+    <% end %>
+  </div> <!-- /widget-content -->
+</div>
+<div id="product-detail" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">&#215;</a>
+        <h4>Product</h4>
+      </div>
+      <div class="modal-body">
+        <% unless @product.nil? %>
+            <%= text_field_tag :token, "#{request.protocol}#{request.host_with_port}#{request.fullpath}/#{@product.sku}", class: "col-md-12" %>
+          <div class="row">
+            <%= image_tag @product.photo.url(:medium) %>
+          </div>
         <% end %>
-        </tbody>
-      </table>
-      <%= will_paginate @developers, previous_label: "&laquo;", next_label: "&raquo;" %>
+      </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+<% unless @product.nil? %>
+  $("#product-detail").modal("show");
+<% end %>
+</script>

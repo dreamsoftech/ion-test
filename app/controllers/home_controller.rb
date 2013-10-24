@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :before_query
+  layout false, only: ["product_thumbnails"]
+
 	
 	def index
 		@products = Product.all
@@ -15,6 +17,11 @@ class HomeController < ApplicationController
 		@supplier = @job_site.supplier
 		@purchase_order = PurchaseOrder.new
 		@purchase_order.phase_id = @phase.id
+	end
+
+	def product_thumbnails
+  	@products = Product.paginate(page: params[:page], per_page: 10)
+		
 	end
 
 	private
