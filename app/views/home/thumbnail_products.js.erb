@@ -3,9 +3,19 @@
   	
     $.getJSON("http://uploading-test.herokuapp.com/products",function(result){
     	$("#product-thumbnails").html("");
+    	var thumbnails = $("<ul class='thumbnails'></ul>");
+    	thumbnails.css("display", "none");
       $.each(result, function(i, field){
-        $("#product-thumbnails").append("<image class='img-thumbnail' src='" + field + "'/>");
+    		var template = $("#template").clone();
+    		template.removeClass("hidden");
+      	template.find("#modal-link").attr("href", "#product-" + i);
+      	template.find("img#product-img").attr("src", field);
+      	template.find(".modal").attr("id", "product-" + i);
+      	template.find("#modal-img").attr("src", field);
+      	template.attr("id", "");
+      	thumbnails.append(template);
       });
+      thumbnails.appendTo("#product-thumbnails").fadeIn('slow');
     });
-  }, 3000);
+  }, 10000);
 </script>

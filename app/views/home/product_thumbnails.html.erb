@@ -1,11 +1,35 @@
 <div class="widget stacked">     
   <div id="product-thumbnails" class="widget-content min-height-200">
-    <% @products.each do |p| %>
-      <a data-toggle="modal" href="#product-<%= p.id %>">
-      	<%= image_tag p.photo.url(:medium), class: "img-thumbnail" %></a>
-      <%= render partial: "modal", locals: {product: p} %>
-    <% end %>
+  	<ul class="thumbnails">
+	    <% @products.each do |p| %>
+  			<li>
+		      <a data-toggle="modal" class="thumbnail" href="#product-<%= p.id %>">
+		      	<%= image_tag p.photo.url(:medium) %></a>
+		      <%= render partial: "modal", locals: {product: p} %>
+		  	</li>
+		  <% end %>
+	  </ul>
   </div> <!-- /widget-content -->
+  <li id="template" class="hidden">
+  	<a data-toggle="modal" class="img-thumbnail" id="modal-link" href="">
+      <img id="product-img"></img>
+    </a>
+   	<div id="" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <a class="close" data-dismiss="modal">&#215;</a>
+		        <h4>Product</h4>
+		      </div>
+		      <div class="modal-body">
+	          <div class="col-md-12">
+	            <img id="modal-img" class="img-thumbnail" style="width: 500px; height: auto;"></img>
+	          </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+ 	</li>
 </div>
 
 <%= render template: "home/thumbnail_products.js.erb" %>

@@ -122,3 +122,12 @@ html, body
 	width: 150px;
 	height: 150px;
 }
+
+.thumbnails
+{
+	list-style: none;
+}
+
+.thumbnails li {
+	float: left;
+}
