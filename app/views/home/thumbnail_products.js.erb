@@ -1,10 +1,11 @@
 <script type="text/javascript">
   setInterval(function(){
-  	console.log("hey");
+  	
     $.getJSON("http://localhost:3000/products",function(result){
     	$("#product-thumbnails").html("");
       $.each(result, function(i, field){
         $("#product-thumbnails").append("<image class='img-thumbnail' src='" + field + "'/>");
-    })
+      });
+    });
   }, 3000);
 </script>
